@@ -1,6 +1,6 @@
 Package: BioMaesteR
 Type: Package
-Title: A pacakge with convenience functions for generic genomic analysis within R
+Title: A package with convenience functions for generic genomic analysis within R
 Version: 0.1.0
 Authors@R: person(given = "Adam",
            family = "Mattsson",
@@ -8,7 +8,7 @@ Authors@R: person(given = "Adam",
            email = "mattsada@gmail.com",
            comment = c(ORCID = "0000-0002-6318-7912"))
 Maintainer: The package maintainer <mattsada@gmail.com>
-Description: Standardized, genric functions as well as bundeld data objects that can be called in various settings in the scope of biological analysis in R. This package is specialized to provide bioinformatics infrastructure that can be used in a variety of analysis.
+Description: Standardized, generic functions as well as bundeld data objects that can be called in various settings in the scope of biological analysis in R. This package is specialized to provide bioinformatics infrastructure that can be used in a variety of analysis.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
