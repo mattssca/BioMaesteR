@@ -11,7 +11,10 @@
 #' `qchrom` (string), `qstart` (string, or integer), and `qend` (string or integer).
 #' These parameters can also accept a vector of characters for multiple regions.
 #' The function also handles chromosome prefixes in the returned object,
-#' based on the selected `projection`.
+#' based on the selected `projection`. In addition, this function also checks if
+#' the provided start coordinate is equal or greater to the end coordinate for 
+#' the same chromosome. It also ensures that specified ranges are within the 
+#' actual chromosomal range.
 #'
 #' @param these_regions The region(s) to be queried. Can be a data frame with
 #' regions with the following columns; chrom, start, end.
@@ -61,9 +64,6 @@ purify_regions <- function(these_regions = NULL,
          `these_regions` or a combination of `qchrom`, `qstart`, and `qend`")
   }
 
-  #TODO: Checks if the specified region is outside the actual chromosomal ranges.
-  #TODO: Check if end is greater than start.
-
   #wrangle the regions provided
   if(!is.null(these_regions)){
     if(is.data.frame(these_regions)){
@@ -102,15 +102,27 @@ purify_regions <- function(these_regions = NULL,
          or individually specify the chromosome, start and end positions with;
          `qchrom`, `qstart`, and `qend`")
   }
-
+  
+  #enforce data types
+  region_table = region_table %>%
+    dplyr::mutate(chrom = as.character(chrom),
+                  start = as.integer(start),
+                  end = as.integer(end))
+  
   #run helper function to deal with prefixes
-  region_table = purify_chr(projection = projection,
-                            incoming_table = region_table)
+  region_table = BioMaesteR::purify_chr(projection = projection,
+                                        incoming_table = region_table)
+  
+  #check if regions make sense 
+  BioMaesteR::sanity_check_regions(incoming_regions = region_table,
+                                   projection = projection)
 
   #enforce data types
   region_table$chrom = as.character(region_table$chrom)
   region_table$start = as.integer(region_table$start)
   region_table$end = as.integer(region_table$end)
+  
+  region_table = as.data.table(region_table)
 
   return(region_table)
 }
