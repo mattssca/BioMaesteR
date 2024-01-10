@@ -31,7 +31,7 @@ Available projections are hg38 and grch37. Default is hg38.}
 A data table with three columns, chrom, start, end.
 }
 \description{
-Helper function for cleaning and standaradize regions.
+Helper function for cleaning and standardize regions.
 }
 \details{
 This function accepts a variety of incoming regions.

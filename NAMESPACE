@@ -2,6 +2,7 @@
 
 export(gene_ranger)
 export(get_gene_info)
+export(purify_chr)
 export(purify_regions)
 export(region_ranger)
 import(data.table, except = c("last", "first", "between", "transpose"))

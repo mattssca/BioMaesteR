@@ -1,6 +1,6 @@
 #' @title Purify Regions.
 #'
-#' @description Helper function for cleaning and standaradize regions.
+#' @description Helper function for cleaning and standardize regions.
 #'
 #' @details This function accepts a variety of incoming regions.
 #' Either, regions can be provided as a data frame with `these_regions`.
@@ -103,20 +103,9 @@ purify_regions <- function(these_regions = NULL,
          `qchrom`, `qstart`, and `qend`")
   }
 
-  #TODO: Turn this into a helper function:
-  #deal with chr prefixes based on selected projection
-  if(projection == "hg38"){
-    if(all(!str_detect(region_table$chrom, "chr"))){
-      region_table =  dplyr::mutate(region_table, chrom = paste0("chr", chrom))
-    }
-  }else if(projection == "grch37"){
-    if(all(str_detect(region_table$chrom, "chr"))){
-      region_table = dplyr::mutate(region_table, chrom = gsub("chr", "", chrom))
-    }
-  }else{
-    stop(paste0("This function supports the following projections; hg38 and
-                grch37. The provided projection is: ", projection))
-  }
+  #run helper function to deal with prefixes
+  region_table = purify_chr(projection = projection,
+                            incoming_table = region_table)
 
   #enforce data types
   region_table$chrom = as.character(region_table$chrom)
