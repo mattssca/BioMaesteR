@@ -11,13 +11,16 @@ jobs:
       run:
         shell: bash -el {0}
 
-  steps:
-    - name: Build package
-      run: Rscript -e "devtools::install()"
+    steps:
+      - name: Build package
+        run:
+          Rscript -e "devtools::install()"
 
-    - name: Check package
-    run: Rscript -e "devtools::check(vignettes = FALSE)"
+      - name: Check package
+        run:
+          Rscript -e "devtools::check(vignettes = FALSE)"
 
-    - name: Run unit tests
-      run: Rscript -e "devtools::test()"
+      - name: Run unit tests
+        run: 
+          Rscript -e "devtools::test()"
     
