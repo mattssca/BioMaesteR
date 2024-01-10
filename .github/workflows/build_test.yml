@@ -1,11 +1,11 @@
-name: BiomaesteR Build Check and Tests
+name: BiomaesteR Build-check and Tests
 
 on:
   pull_request:
     branches: [main]
 
 jobs:
-  import-data:
+  build-check-test:
     runs-on: ubuntu-latest
     steps:
       - name: Set up R
@@ -13,9 +13,6 @@ jobs:
 
       - name: Install packages
         uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          packages: |
-            any::devtools
 
       - name: Check out repository
         uses: actions/checkout@v3
