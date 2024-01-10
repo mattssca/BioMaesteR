@@ -110,42 +110,19 @@ purify_regions <- function(these_regions = NULL,
                   end = as.integer(end))
   
   #run helper function to deal with prefixes
-  region_table = purify_chr(projection = projection,
-                            incoming_table = region_table)
+  region_table = BioMaesteR::purify_chr(projection = projection,
+                                        incoming_table = region_table)
   
   #check if regions make sense 
-  #is start equal or greater then end?
-  for (i in 1:nrow(region_table)){
-    if (region_table$start[i] >= region_table$end[i]) {
-      print(paste("Row", i, "does not meet the condition: start is greater than or equal to end"))
-    }
-  }
-  
-  #check if regions are within the chromosomal range
-  commpare_ranges <- function(df1, df2){
-    result <- df1 %>%
-      inner_join(df2, by = "chrom") %>%
-      filter(start.x > end.y | end.x > end.y)
-    
-    if(nrow(result) > 0){
-      stop("Specified start or end coordinates fall outside the actual chromosomal range")
-    }
-  }
-  
-  if(projection == "hg38"){
-    commpare_ranges(region_table, chromosome_arms_hg38 %>% 
-                      dplyr::filter(arm == "q"))
-  }else if(projection == "grch37"){
-    compare_ranges(region_table, chromosome_arms_grch37 %>% 
-                     dplyr::filter(arm == "q"))
-  }else{
-    stop("The projection you have provided is not supported. Please choose either hg38 or grch37")
-  }
+  BioMaesteR::sanity_check_regions(incoming_regions = region_table,
+                                   projection = projection)
 
   #enforce data types
   region_table$chrom = as.character(region_table$chrom)
   region_table$start = as.integer(region_table$start)
   region_table$end = as.integer(region_table$end)
+  
+  region_table = as.data.table(region_table)
 
   return(region_table)
 }
