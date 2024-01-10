@@ -9,10 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-    steps:
       - name: Build package
         run:
           Rscript -e "devtools::install()"
