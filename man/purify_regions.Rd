@@ -43,7 +43,10 @@ multiple regions. The user can also individually specify region(s) with;
 `qchrom` (string), `qstart` (string, or integer), and `qend` (string or integer).
 These parameters can also accept a vector of characters for multiple regions.
 The function also handles chromosome prefixes in the returned object,
-based on the selected `projection`.
+based on the selected `projection`. In addition, this function also checks if
+the provided start coordinate is equal or greater to the end coordinate for 
+the same chromosome. It also ensures that specified ranges are within the 
+actual chromosomal range.
 }
 \examples{
 #Example 1 - Give the function one region as a string
