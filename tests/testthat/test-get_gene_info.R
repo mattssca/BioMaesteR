@@ -34,3 +34,8 @@ test_that("Expected to fail", {
   expect_error(get_gene_info(these_genes = "MYC",
                              projection = "hg19"))
 })
+
+
+test_that("Check the type of the return", {
+  expect_true(is.data.frame(get_gene_info(these_genes = c("BCL2", "MYC"))))
+})
