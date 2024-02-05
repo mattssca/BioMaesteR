@@ -35,7 +35,7 @@ specified size.
 }
 \details{
 This function internally calls the purify_regions function to 
-properly format the incoming regions.Thus, thuis function can accept either a 
+properly format the incoming regions.Thus, this function can accept either a 
 data frame of regions or individual region coordinates.
 }
 \examples{
