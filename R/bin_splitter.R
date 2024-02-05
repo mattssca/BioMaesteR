@@ -4,7 +4,7 @@
 #' specified size.
 #' 
 #' @details This function internally calls the purify_regions function to 
-#' properly format the incoming regions.Thus, thuis function can accept either a 
+#' properly format the incoming regions.Thus, this function can accept either a 
 #' data frame of regions or individual region coordinates.
 #'
 #' @param these_regions The region(s) to be queried. Can be a data frame with
@@ -39,7 +39,7 @@ bin_splitter = function(these_regions = NULL,
                         qend = NULL,
                         bin_size = 1000){
   
-  #call helperto format regions
+  #call helper to format regions
   my_regions = purify_regions(these_regions = these_regions,
                               qchrom = qchrom,
                               qstart = qstart,

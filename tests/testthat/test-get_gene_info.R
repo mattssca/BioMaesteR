@@ -1,4 +1,4 @@
-#load pacakges
+#load packages
 library(testthat)
 
 
