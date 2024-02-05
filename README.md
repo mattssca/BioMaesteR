@@ -1,3 +1,4 @@
+# <img src="biomaesteR.png" align="right" alt="" width="120" />
 # BioMaesteR
 This is BioMaesteR, an R package with convenience functions commonly requested in various types of genomic analysis within R. This package is specialized to provide bioinformatics infrastructure that can be 
 used in a variety of genomic analysis. 
