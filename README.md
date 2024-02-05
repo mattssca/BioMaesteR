@@ -1,3 +1,5 @@
+[![BiomaesteR Build Check and Tests](https://github.com/mattssca/BioMaesteR/actions/workflows/build_test.yml/badge.svg?event=pull_request)](https://github.com/mattssca/BioMaesteR/actions/workflows/build_test.yml)
+
 # <img src="biomaesteR.png" align="right" alt="" width="120" />
 # biomaesteR
 This is biomaesteR, an R package with convenience functions commonly requested in various types of genomic analysis within R. This package is specialized to provide bioinformatics infrastructure that can be 
