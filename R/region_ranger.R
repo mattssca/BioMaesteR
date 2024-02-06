@@ -14,7 +14,7 @@
 #' The function also handles chromosome prefixes in the returned object,
 #' based on the selected `projection`.
 #'
-#' @param these_regions these_regions The region(s) to be queried. Can be a data frame with
+#' @param these_regions The region(s) to be queried. Can be a data frame with
 #' regions with the following columns; chrom, start, end.
 #' Or in a string in the following format chr:start-end.
 #' @param qchrom Query chromosome (prefixed or un-prefixed),
