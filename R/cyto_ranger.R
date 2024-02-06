@@ -1,9 +1,10 @@
-#' @title Region Ranger.
+#' @title Cyto Ranger.
 #'
-#' @description Return genes residing in defined region(s).
+#' @description This function takes a region or regions and returns the cytoband
+#' information for the region(s).
 #'
-#' @details Query a region and return all genomic events residing inside the
-#' specified region. This function accepts a variety of incoming regions.
+#' @details Query a region and relevant cytoband information for the specified 
+#' region(s). This function accepts a variety of incoming regions.
 #' Either, regions can be provided as a data frame with `these_regions`.
 #' If so, the following columns must exist; chrom, start, end.
 #' This parameter (`these_regions`) also accept a region in "region" format,
@@ -23,9 +24,8 @@
 #' @param qend Query end position. Required if `these_regions` is not provided.
 #' @param projection The desired projection you want back coordinates for.
 #' Available projections are hg38 and grch37. Default is hg38.
-#' @param raw Set to TRUE to return all columns. Default is FALSE.
 #'
-#' @return A data frame with genomic events residing in the specified region(s).
+#' @return A data frame with cytoband information for the specified region(s).
 #'
 #' @rawNamespace import(data.table, except = c("last", "first", "between", "transpose"))
 #' @import dplyr
@@ -33,79 +33,69 @@
 #' @export
 #'
 #' @examples
-#' #Example 1 - Give the function one region as a string
-#' my_region = region_ranger(these_regions = "chr8:127735434-127742951")
+#' #' #Example 1 - Give the function one region as a string
+#' my_region = cyto_ranger(these_regions = "chr8:127735434-127742951")
 #'
 #' #Example 2 - Give the function multiple regions as a string
-#' my_regions = region_ranger(these_regions = c("chr8:128747680-128753674",
-#'                                              "chr18:60790579-60987361"),
-#'                             projection = "grch37")
+#' my_regions = cyto_ranger(these_regions = c("chr8:128747680-128753674",
+#'                                            "chr18:60790579-60987361"),
+#'                          projection = "grch37")
 #'
 #' #Example 3 - Individually specify the chromosome, start and end coordinates
-#' this_region = region_ranger(qchrom = "chr8",
-#'                             qstart = 127735434,
-#'                             qend = 127742951)
+#' this_region = cyto_ranger(qchrom = "chr8",
+#'                           qstart = 127735434,
+#'                           qend = 127742951)
 #'
 #' #Example 4 - Individually specify multiple regions with the query parameters
-#' these_regions = region_ranger(qchrom = c("chr8", "chr18"),
-#'                               qstart = c(128747680, 60790579),
-#'                               qend = c(128753674, 60987361),
-#'                               projection = "grch37")
+#' these_regions = cyto_ranger(qchrom = c("chr8", "chr18"),
+#'                             qstart = c(128747680, 60790579),
+#'                             qend = c(128753674, 60987361),
+#'                             projection = "grch37")
 #'
-#'
-region_ranger <- function(these_regions = NULL,
-                          qchrom = NULL,
-                          qstart = NULL,
-                          qend = NULL,
-                          projection = "hg38",
-                          raw = FALSE) {
-
+cyto_ranger <- function(these_regions = NULL,
+                        qchrom = NULL,
+                        qstart = NULL,
+                        qend = NULL,
+                        projection = "hg38") {
+  
   #call helper to wrangle regions
   region_table = BioMaesteR::purify_regions(these_regions = these_regions,
                                             qchrom = qchrom,
                                             qstart = qstart,
                                             qend = qend,
                                             projection = projection)
-
+  
   #deal with projections
   if(projection == "hg38"){
-    gene_table = gene_coordinates_hg38
+    cytobands = cytobands_hg38
   }else if(projection == "grch37"){
-    gene_table = gene_coordinates_grch37
+    cytobands = cytobands_grch37
   }else{
     stop(paste0("This function supports the following projections; hg38 and
                 grch37. The provided projection is: ", projection))
   }
-
+  
   #convert to data table object
-  gene_table = as.data.table(gene_table)
-
+  cytobands = as.data.table(cytobands)
+  
   #set keys
   data.table::setkey(region_table, chrom, start, end)
-  data.table::setkey(gene_table, chrom, start, end)
-
+  data.table::setkey(cytobands, chrom, start, end)
+  
   #intersect regions
-  intersect = data.table::foverlaps(region_table, gene_table, nomatch = 0)
-  colnames(intersect)[26] = "region_start"
-  colnames(intersect)[27] = "region_end"
-
-  #transform object to data frame
-  inter_df = as.data.frame(intersect)
-
-  inter_df = as.data.frame(inter_df) %>%
-    dplyr::arrange(chrom, start) %>%
+  intersect = data.table::foverlaps(region_table, cytobands, nomatch = 0)
+  
+  #rename columns
+  colnames(intersect)[6] = "region_start"
+  colnames(intersect)[7] = "region_end"
+  colnames(intersect)[2] = "cytoband_start"
+  colnames(intersect)[3] = "cytoband_end"
+  
+  #transform object for retur
+  inter_df = as.data.frame(intersect) %>%
+    dplyr::arrange(chrom, region_start) %>%
+    dplyr::select(chrom, region_start, region_end, cytoBand, cytoband_start, cytoband_end) %>%
     distinct(.keep_all = TRUE)
-
-  if(!raw){
-    inter_df = dplyr::select(inter_df, region_start, region_end, type,
-                             gene_biotype, hugo_symbol, ensembl_gene_id,
-                             chrom, start, end, width, strand)
-  }
-
-  #add checks for 0 genes in the region
-  if(nrow(inter_df) == 0){
-    warning("No genes found within the specified region(s),
-            check the provided regions.")
-    }
+  
   return(inter_df)
 }
