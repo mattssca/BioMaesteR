@@ -1,0 +1,62 @@
+title: biomaesteR
+url: https://github.com/mattssca/BioMaesteR
+template:
+  bootstrap: 5
+  theme: breeze-light
+home:
+  sidebar:
+    structure: [links, license, community, citation, authors, dev]
+  links:
+  - text: Source Code
+    href: https://github.com/mattssca/BioMaesteR
+  - text: Report A Bug
+    href: https://github.com/mattssca/BioMaesteR/issues
+  - text: Insights
+    href: https://github.com/mattssca/BioMaesteR/pulse
+search:
+reference:
+- title: Bundled Data
+  desc: Data objects bundlded with the BioMaesteR package.
+- contents:
+  - centromeres_hg38
+  - centromeres_grch37
+  - chromosome_arms_hg38
+  - chromosome_arms_grch37
+  - cytobands_hg38
+  - cytobands_grch37
+  - gene_coordinates_hg38
+  - gene_coordinates_grch37
+- title: Utility
+  desc: A collection of utility functions.
+- contents:
+  - bin_splitter
+  - cyto_ranger
+  - gene_ranger
+  - region_ranger
+- title: Helpers
+  desc: A collection of helper functions.
+- contents:
+  - get_gene_info
+  - purify_chr
+  - purify_regions
+  - sanity_check_regions
+navbar:
+  type: inverse
+  left:
+    - icon: fa-light fa-memo-circle-info
+      text: "How To"
+      menu:
+      -  text: Install
+         href: https://github.com/mattssca/BioMaesteR#installation
+    - icon: fa-light fa-person-chalkboard
+      text: "Tutorials"
+      menu:
+      - text: Coming Soon...
+        href: https://github.com/mattssca/BioMaesteR
+  right:
+    - icon: fa-file-code-o
+      text: "Functions Index"
+      href: reference/index.html
+    - icon: fa-github fa-lg
+      text: "github"
+      href: https://github.com/mattssca/BioMaesteR

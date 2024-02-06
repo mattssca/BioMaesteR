@@ -6,3 +6,9 @@ This is biomaesteR, an R package with convenience functions commonly requested i
 used in a variety of genomic analysis. 
 
 This repo is also an ongoing project intended for demonstrating and following best-practices in development of R packages. This includes adequate package documentation (functions, bundled data objects, etc.), reproducible unit tests and vignettes. Upon Pull Requests, this repo also executes a GitAction workflow where the package is installed in various environments and thorough testing of the complete code base.
+
+## Installation
+Open R studio and run the following command to install the development version from GitHub:
+```
+devtools::install_github("mattssca/BioMaesteR")
+```
