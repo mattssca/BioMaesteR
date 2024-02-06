@@ -12,3 +12,6 @@ Open R studio and run the following command to install the development version f
 ```
 devtools::install_github("mattssca/BioMaesteR")
 ```
+
+## Website
+For more information, please visit the [BioMaesteR website](https://mattssca.github.io/BioMaesteR/).
