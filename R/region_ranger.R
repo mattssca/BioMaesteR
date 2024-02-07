@@ -34,24 +34,23 @@
 #'
 #' @examples
 #' #Example 1 - Give the function one region as a string
-#' my_region = region_ranger(these_regions = "chr8:127735434-127742951")
+#' region_ranger(these_regions = "chr8:127735434-127742951")
 #'
 #' #Example 2 - Give the function multiple regions as a string
-#' my_regions = region_ranger(these_regions = c("chr8:128747680-128753674",
-#'                                              "chr18:60790579-60987361"),
-#'                             projection = "grch37")
-#'
+#' region_ranger(these_regions = c("chr8:128747680-128753674",
+#'               "chr18:60790579-60987361"),
+#'               projection = "grch37")
+#' 
 #' #Example 3 - Individually specify the chromosome, start and end coordinates
-#' this_region = region_ranger(qchrom = "chr8",
-#'                             qstart = 127735434,
-#'                             qend = 127742951)
+#' region_ranger(qchrom = "chr8",
+#'               qstart = 127735434,
+#'               qend = 127742951)
 #'
 #' #Example 4 - Individually specify multiple regions with the query parameters
-#' these_regions = region_ranger(qchrom = c("chr8", "chr18"),
-#'                               qstart = c(128747680, 60790579),
-#'                               qend = c(128753674, 60987361),
-#'                               projection = "grch37")
-#'
+#' region_ranger(qchrom = c("chr8", "chr18"),
+#'               qstart = c(128747680, 60790579),
+#'               qend = c(128753674, 60987361),
+#'               projection = "grch37")
 #'
 region_ranger <- function(these_regions = NULL,
                           qchrom = NULL,
