@@ -152,19 +152,28 @@ the function only writes to bed file (i.e nothing is returned).</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#Example 1 - Request one gene (in Hugo format) and with default parameters</span></span></span>
-<span class="r-in"><span><span class="va">hugo_myc</span> <span class="op">=</span> <span class="fu">gene_ranger</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="st">"MYC"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">gene_ranger</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="st">"MYC"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   chrom     start       end width strand   gene_biotype hugo_symbol</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  chr8 127735434 127742951  7518      + protein_coding         MYC</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Example 2 - Same as example one but MYC is here specified as Ensembl ID</span></span></span>
-<span class="r-in"><span><span class="va">ensembl_myc</span> <span class="op">=</span> <span class="fu">gene_ranger</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="st">"ENSG00000136997"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">gene_ranger</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="st">"ENSG00000136997"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   chrom     start       end width strand   gene_biotype ensembl_gene_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  chr8 127735434 127742951  7518      + protein_coding ENSG00000136997</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Example 3 - Request multiple genes with non-default parameters</span></span></span>
-<span class="r-in"><span><span class="va">my_genes</span> <span class="op">=</span> <span class="fu">gene_ranger</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MYC"</span>, <span class="st">"BCL2"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span><span class="fu">gene_ranger</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MYC"</span>, <span class="st">"BCL2"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                       projection <span class="op">=</span> <span class="st">"grch37"</span>,</span></span>
 <span class="r-in"><span>                       return_as <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     MYC                    BCL2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "8:128747680-128753674"  "18:60790579-60987361" </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Example 4 - Request multiple Ensembl IDs and return in bed format</span></span></span>
-<span class="r-in"><span><span class="va">my_bed</span> <span class="op">=</span> <span class="fu">gene_ranger</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ENSG00000136997"</span>, <span class="st">"ENSG00000171791"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                     return_as <span class="op">=</span> <span class="st">"bed"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">gene_ranger</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ENSG00000136997"</span>, <span class="st">"ENSG00000171791"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            return_as <span class="op">=</span> <span class="st">"bed"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   chrom     start       end score strand</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 chr18  63123346  63320128    NA      -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  chr8 127735434 127742951    NA      +</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Example 5 - Write to bed file</span></span></span>
 <span class="r-in"><span><span class="fu">gene_ranger</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BCL2"</span>, <span class="st">"MYC"</span><span class="op">)</span>,</span></span>

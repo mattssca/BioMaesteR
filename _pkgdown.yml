@@ -32,6 +32,7 @@ reference:
   - bin_splitter
   - cyto_ranger
   - gene_ranger
+  - power_lifter
   - region_ranger
 - title: Helpers
   desc: A collection of helper functions.

@@ -135,23 +135,33 @@ based on the selected `projection`.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#' #Example 1 - Give the function one region as a string</span></span></span>
-<span class="r-in"><span><span class="va">my_region</span> <span class="op">=</span> <span class="fu">cyto_ranger</span><span class="op">(</span>these_regions <span class="op">=</span> <span class="st">"chr8:127735434-127742951"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">cyto_ranger</span><span class="op">(</span>these_regions <span class="op">=</span> <span class="st">"chr8:127735434-127742951"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   chrom region_start region_end cytoBand cytoband_start cytoband_end</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  chr8    127735434  127742951   q24.21      126300000    130400000</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Example 2 - Give the function multiple regions as a string</span></span></span>
-<span class="r-in"><span><span class="va">my_regions</span> <span class="op">=</span> <span class="fu">cyto_ranger</span><span class="op">(</span>these_regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr8:128747680-128753674"</span>,</span></span>
-<span class="r-in"><span>                                           <span class="st">"chr18:60790579-60987361"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                         projection <span class="op">=</span> <span class="st">"grch37"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">cyto_ranger</span><span class="op">(</span>these_regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr8:128747680-128753674"</span>,</span></span>
+<span class="r-in"><span>                              <span class="st">"chr18:60790579-60987361"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            projection <span class="op">=</span> <span class="st">"grch37"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   chrom region_start region_end cytoBand cytoband_start cytoband_end</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    18     60790579   60987361   q21.33       59000000     61600000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     8    128747680  128753674   q24.21      127300000    131500000</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Example 3 - Individually specify the chromosome, start and end coordinates</span></span></span>
-<span class="r-in"><span><span class="va">this_region</span> <span class="op">=</span> <span class="fu">cyto_ranger</span><span class="op">(</span>qchrom <span class="op">=</span> <span class="st">"chr8"</span>,</span></span>
-<span class="r-in"><span>                          qstart <span class="op">=</span> <span class="fl">127735434</span>,</span></span>
-<span class="r-in"><span>                          qend <span class="op">=</span> <span class="fl">127742951</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">cyto_ranger</span><span class="op">(</span>qchrom <span class="op">=</span> <span class="st">"chr8"</span>,</span></span>
+<span class="r-in"><span>            qstart <span class="op">=</span> <span class="fl">127735434</span>,</span></span>
+<span class="r-in"><span>            qend <span class="op">=</span> <span class="fl">127742951</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   chrom region_start region_end cytoBand cytoband_start cytoband_end</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  chr8    127735434  127742951   q24.21      126300000    130400000</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Example 4 - Individually specify multiple regions with the query parameters</span></span></span>
-<span class="r-in"><span><span class="va">these_regions</span> <span class="op">=</span> <span class="fu">cyto_ranger</span><span class="op">(</span>qchrom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr8"</span>, <span class="st">"chr18"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                            qstart <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">128747680</span>, <span class="fl">60790579</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                            qend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">128753674</span>, <span class="fl">60987361</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                            projection <span class="op">=</span> <span class="st">"grch37"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">cyto_ranger</span><span class="op">(</span>qchrom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr8"</span>, <span class="st">"chr18"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            qstart <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">128747680</span>, <span class="fl">60790579</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            qend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">128753674</span>, <span class="fl">60987361</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            projection <span class="op">=</span> <span class="st">"grch37"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   chrom region_start region_end cytoBand cytoband_start cytoband_end</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    18     60790579   60987361   q21.33       59000000     61600000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     8    128747680  128753674   q24.21      127300000    131500000</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
