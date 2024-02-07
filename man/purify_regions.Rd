@@ -50,21 +50,21 @@ actual chromosomal range.
 }
 \examples{
 #Example 1 - Give the function one region as a string
-my_region = purify_regions(these_regions = "chr1:100-500")
+purify_regions(these_regions = "chr1:100-500")
 
 #Example 2 - Give the function multiple regions as a string
-my_regions = purify_regions(these_regions = c("chr1:100-500", "chr2:100-500"),
-                            projection = "grch37")
+purify_regions(these_regions = c("chr1:100-500", "chr2:100-500"),
+               projection = "grch37")
 
 #Example 3 - Individually specify the chromosome, start and end coordinates
-this_region = purify_regions(qchrom = "chr1",
-                             qstart = 100,
-                             qend = 500)
+purify_regions(qchrom = "chr1",
+               qstart = 100,
+               qend = 500)
 
 #Example 4 - Individually specify multiple regions with the query parameters
-these_regions = purify_regions(qchrom = c("chr1", "chr2"),
-                               qstart = c(100, 200),
-                               qend = c(500, 600),
-                               projection = "grch37")
+purify_regions(qchrom = c("chr1", "chr2"),
+               qstart = c(100, 200),
+               qend = c(500, 600),
+               projection = "grch37")
 
 }

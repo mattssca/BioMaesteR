@@ -18,4 +18,8 @@ Depends:
 Imports: 
     data.table,
     dplyr,
-    stringr
+    GenomicRanges,
+    rtracklayer,
+    stats,
+    stringr,
+    utils

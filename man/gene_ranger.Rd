@@ -62,19 +62,19 @@ the function only writes to bed file (i.e nothing is returned).
 }
 \examples{
 #Example 1 - Request one gene (in Hugo format) and with default parameters
-hugo_myc = gene_ranger(these_genes = "MYC")
+gene_ranger(these_genes = "MYC")
 
 #Example 2 - Same as example one but MYC is here specified as Ensembl ID
-ensembl_myc = gene_ranger(these_genes = "ENSG00000136997")
+gene_ranger(these_genes = "ENSG00000136997")
 
 #Example 3 - Request multiple genes with non-default parameters
-my_genes = gene_ranger(these_genes = c("MYC", "BCL2"),
+gene_ranger(these_genes = c("MYC", "BCL2"),
                        projection = "grch37",
                        return_as = "region")
 
 #Example 4 - Request multiple Ensembl IDs and return in bed format
-my_bed = gene_ranger(these_genes = c("ENSG00000136997", "ENSG00000171791"),
-                     return_as = "bed")
+gene_ranger(these_genes = c("ENSG00000136997", "ENSG00000171791"),
+            return_as = "bed")
 
 #Example 5 - Write to bed file
 gene_ranger(these_genes = c("BCL2", "MYC"),
