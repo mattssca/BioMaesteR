@@ -221,3 +221,14 @@ gene_coordinates_hg38 = as.data.frame(gtf_hg38) %>% #convert to data frame
 
 #export data set
 usethis::use_data(gene_coordinates_hg38, overwrite = TRUE)
+
+#Download liftOver chains from UCSC
+#hg38
+curl::curl_download(url = "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/liftOver/hg38ToHg19.over.chain.gz",
+                    destfile = "inst/extdata/hg38ToHg19.over.chain.gz",
+                    quiet = FALSE)
+
+#grch37
+curl::curl_download(url = "https://hgdownload.soe.ucsc.edu/goldenPath/hg19/liftOver/hg19ToHg38.over.chain.gz",
+                    destfile = "inst/extdata/hg19ToHg38.over.chain.gz",
+                    quiet = FALSE)
