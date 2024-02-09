@@ -1,0 +1,51 @@
+---
+title: "BioMaesteR Tutorial"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{BioMaesteR Tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+This is a tutorial for the BiomaesteR package, an R package with convenience 
+functions commonly requested in various types of genomic analysis within R. 
+This package is specialized to provide bioinformatics infrastructure that can be 
+used in a variety of genomic analysis. 
+
+## Load packages
+```{r load-packages, message=FALSE, warning=FALSE}
+library(BioMaesteR)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+```
+
+## Bundled Data Objects
+In this section, we will explore and use the bundled data objects that come with
+the BiomaesteR package. Note that raw data and data comilation scripts are also
+included within this package. The documentation for bunlded objects can be found
+[here](https://github.com/mattssca/BioMaesteR/blob/main/R/data.R). As for the
+data comilation, this script can be found 
+[here](https://github.com/mattssca/BioMaesteR/blob/main/inst/extdata/compile_data.R).
+
+### What Is Inlcuded?
+First, let's take a look at the data objects that are included in the BiomaesteR.
+The following objects are as of now included in the package:
+
+* [centromeres_grch37](https://mattssca.github.io/BioMaesteR/reference/centromeres_grch37.html)
+* [centromeres_hg38](https://mattssca.github.io/BioMaesteR/reference/centromeres_hg38.html)
+* [chromosome_arms_grch37](https://mattssca.github.io/BioMaesteR/reference/chromosome_arms_grch37.html)
+* [chromosome_arms_hg38](https://mattssca.github.io/BioMaesteR/reference/chromosome_arms_hg38.html)
+* [cytobands_grch37](https://mattssca.github.io/BioMaesteR/reference/cytobands_grch37.html)
+* [cytobands_hg38](https://mattssca.github.io/BioMaesteR/reference/cytobands_hg38.html)
+* [gene_coordinates_grch37](https://mattssca.github.io/BioMaesteR/reference/gene_coordinates_grch37.html)
+* [gene_coordinates_hg38](https://mattssca.github.io/BioMaesteR/reference/gene_coordinates_hg38.html)
+
+### Dataset Exploration
+Now, let's take a look at the first few rows of the gene coordinates for the
+GRCh37 assembly. 
+```{r gene-coordinates-grch37}
+kable(gene_coordinates_grch37[1:5, ], "html") %>% 
+  scroll_box(width = "100%")
+```
+
+
