@@ -29,6 +29,8 @@ incoming data frame.
 \examples{
 #Example 1 - Add prefixes to a data frame
 my_data = data.frame(chrom = c("1", "2", "3"))
-my_data = purify_chr(projection = "hg38", incoming_table = my_data)
+
+purify_chr(projection = "hg38", 
+           incoming_table = my_data)
 
 }

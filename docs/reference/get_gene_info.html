@@ -114,18 +114,61 @@ wants everything back (i.e all available columns) toggle `raw` to `TRUE`.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#Example 1 - Query one gene (in Hugo format) and with default parameters.</span></span></span>
-<span class="r-in"><span><span class="va">hugo_myc</span> <span class="op">=</span> <span class="fu">get_gene_info</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="st">"MYC"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">get_gene_info</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="st">"MYC"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   hugo_symbol ensembl_gene_id type   gene_biotype         source gene_version</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         MYC ENSG00000136997 gene protein_coding ensembl_havana           22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      gene_source  tag ccds_id score transcript_id transcript_version</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 ensembl_havana &lt;NA&gt;    &lt;NA&gt;    NA          &lt;NA&gt;               &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   transcript_name transcript_source transcript_biotype exon_number exon_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1            &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;        &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   protein_id protein_version</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       &lt;NA&gt;            &lt;NA&gt;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Example 2 - Same as example 1 but MYC is here specified as Ensembl ID.</span></span></span>
-<span class="r-in"><span><span class="va">ensembl_myc</span> <span class="op">=</span> <span class="fu">get_gene_info</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="st">"ENSG00000136997"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">get_gene_info</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="st">"ENSG00000136997"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ensembl_gene_id hugo_symbol type   gene_biotype         source gene_version</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 ENSG00000136997         MYC gene protein_coding ensembl_havana           22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      gene_source  tag ccds_id score transcript_id transcript_version</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 ensembl_havana &lt;NA&gt;    &lt;NA&gt;    NA          &lt;NA&gt;               &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   transcript_name transcript_source transcript_biotype exon_number exon_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1            &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;        &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   protein_id protein_version</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       &lt;NA&gt;            &lt;NA&gt;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Example 3 - Request multiple genes with non-default parameters</span></span></span>
-<span class="r-in"><span><span class="va">hugo_genes</span> <span class="op">=</span> <span class="fu">get_gene_info</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MYC"</span>, <span class="st">"BCL2"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                           projection <span class="op">=</span> <span class="st">"grch37"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">get_gene_info</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MYC"</span>, <span class="st">"BCL2"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>              projection <span class="op">=</span> <span class="st">"grch37"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   hugo_symbol ensembl_gene_id type   gene_biotype         source gene_version</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         MYC ENSG00000136997 gene protein_coding ensembl_havana           10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        BCL2 ENSG00000171791 gene protein_coding ensembl_havana           10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      gene_source  tag ccds_id score transcript_id transcript_version</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 ensembl_havana &lt;NA&gt;    &lt;NA&gt;    NA          &lt;NA&gt;               &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 ensembl_havana &lt;NA&gt;    &lt;NA&gt;    NA          &lt;NA&gt;               &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   transcript_name transcript_source transcript_biotype exon_number exon_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1            &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;        &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2            &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;        &lt;NA&gt;    &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   protein_id protein_version</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       &lt;NA&gt;            &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       &lt;NA&gt;            &lt;NA&gt;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Example 4 - Request multiple Ensembl IDs and return all columns.</span></span></span>
-<span class="r-in"><span><span class="va">ensembl_genes</span> <span class="op">=</span> <span class="fu">get_gene_info</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ENSG00000136997"</span>, <span class="st">"ENSG00000171791"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                              raw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">get_gene_info</span><span class="op">(</span>these_genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ENSG00000136997"</span>, <span class="st">"ENSG00000171791"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>              raw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   chrom     start       end  width strand type  tag ccds_id ensembl_gene_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 chr18  63123346  63320128 196783      - gene &lt;NA&gt;    &lt;NA&gt; ENSG00000171791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  chr8 127735434 127742951   7518      + gene &lt;NA&gt;    &lt;NA&gt; ENSG00000136997</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   hugo_symbol         source score gene_version    gene_source   gene_biotype</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        BCL2 ensembl_havana    NA           14 ensembl_havana protein_coding</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         MYC ensembl_havana    NA           22 ensembl_havana protein_coding</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   transcript_id transcript_version transcript_name transcript_source</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          &lt;NA&gt;               &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          &lt;NA&gt;               &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   transcript_biotype exon_number exon_id exon_version protein_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1               &lt;NA&gt;        &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;       &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2               &lt;NA&gt;        &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;       &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   protein_version input_format</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1            &lt;NA&gt;      Ensembl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2            &lt;NA&gt;      Ensembl</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

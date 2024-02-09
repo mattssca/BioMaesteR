@@ -137,24 +137,59 @@ based on the selected `projection`.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#Example 1 - Give the function one region as a string</span></span></span>
-<span class="r-in"><span><span class="va">my_region</span> <span class="op">=</span> <span class="fu">region_ranger</span><span class="op">(</span>these_regions <span class="op">=</span> <span class="st">"chr8:127735434-127742951"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">region_ranger</span><span class="op">(</span>these_regions <span class="op">=</span> <span class="st">"chr8:127735434-127742951"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   region_start region_end type   gene_biotype hugo_symbol ensembl_gene_id chrom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    127735434  127742951 gene         lncRNA      CASC11 ENSG00000249375  chr8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    127735434  127742951 gene protein_coding         MYC ENSG00000136997  chr8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       start       end width strand</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 127686343 127738987 52645      -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 127735434 127742951  7518      +</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Example 2 - Give the function multiple regions as a string</span></span></span>
-<span class="r-in"><span><span class="va">my_regions</span> <span class="op">=</span> <span class="fu">region_ranger</span><span class="op">(</span>these_regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr8:128747680-128753674"</span>,</span></span>
-<span class="r-in"><span>                                             <span class="st">"chr18:60790579-60987361"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                            projection <span class="op">=</span> <span class="st">"grch37"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">region_ranger</span><span class="op">(</span>these_regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr8:128747680-128753674"</span>,</span></span>
+<span class="r-in"><span>              <span class="st">"chr18:60790579-60987361"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>              projection <span class="op">=</span> <span class="st">"grch37"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   region_start region_end type   gene_biotype  hugo_symbol ensembl_gene_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     60790579   60987361 gene protein_coding         BCL2 ENSG00000171791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     60790579   60987361 gene sense_intronic RP11-299P2.1 ENSG00000267766</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     60790579   60987361 gene         snoRNA       snoU13 ENSG00000238988</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     60790579   60987361 gene sense_intronic  RP11-28F1.2 ENSG00000267701</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    128747680  128753674 gene protein_coding          MYC ENSG00000136997</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   chrom     start       end  width strand</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    18  60790579  60987361 196783      -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    18  60818347  60818553    207      -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    18  60861822  60861898     77      -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    18  60981035  60981315    281      -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     8 128747680 128753674   5995      +</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Example 3 - Individually specify the chromosome, start and end coordinates</span></span></span>
-<span class="r-in"><span><span class="va">this_region</span> <span class="op">=</span> <span class="fu">region_ranger</span><span class="op">(</span>qchrom <span class="op">=</span> <span class="st">"chr8"</span>,</span></span>
-<span class="r-in"><span>                            qstart <span class="op">=</span> <span class="fl">127735434</span>,</span></span>
-<span class="r-in"><span>                            qend <span class="op">=</span> <span class="fl">127742951</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">region_ranger</span><span class="op">(</span>qchrom <span class="op">=</span> <span class="st">"chr8"</span>,</span></span>
+<span class="r-in"><span>              qstart <span class="op">=</span> <span class="fl">127735434</span>,</span></span>
+<span class="r-in"><span>              qend <span class="op">=</span> <span class="fl">127742951</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   region_start region_end type   gene_biotype hugo_symbol ensembl_gene_id chrom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    127735434  127742951 gene         lncRNA      CASC11 ENSG00000249375  chr8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    127735434  127742951 gene protein_coding         MYC ENSG00000136997  chr8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       start       end width strand</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 127686343 127738987 52645      -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 127735434 127742951  7518      +</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Example 4 - Individually specify multiple regions with the query parameters</span></span></span>
-<span class="r-in"><span><span class="va">these_regions</span> <span class="op">=</span> <span class="fu">region_ranger</span><span class="op">(</span>qchrom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr8"</span>, <span class="st">"chr18"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                              qstart <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">128747680</span>, <span class="fl">60790579</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                              qend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">128753674</span>, <span class="fl">60987361</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                              projection <span class="op">=</span> <span class="st">"grch37"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">region_ranger</span><span class="op">(</span>qchrom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr8"</span>, <span class="st">"chr18"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>              qstart <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">128747680</span>, <span class="fl">60790579</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>              qend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">128753674</span>, <span class="fl">60987361</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>              projection <span class="op">=</span> <span class="st">"grch37"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   region_start region_end type   gene_biotype  hugo_symbol ensembl_gene_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     60790579   60987361 gene protein_coding         BCL2 ENSG00000171791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     60790579   60987361 gene sense_intronic RP11-299P2.1 ENSG00000267766</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     60790579   60987361 gene         snoRNA       snoU13 ENSG00000238988</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     60790579   60987361 gene sense_intronic  RP11-28F1.2 ENSG00000267701</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    128747680  128753674 gene protein_coding          MYC ENSG00000136997</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   chrom     start       end  width strand</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    18  60790579  60987361 196783      -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    18  60818347  60818553    207      -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    18  60861822  60861898     77      -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    18  60981035  60981315    281      -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     8 128747680 128753674   5995      +</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

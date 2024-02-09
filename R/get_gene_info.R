@@ -22,18 +22,18 @@
 #'
 #' @examples
 #' #Example 1 - Query one gene (in Hugo format) and with default parameters.
-#' hugo_myc = get_gene_info(these_genes = "MYC")
+#' get_gene_info(these_genes = "MYC")
 #'
 #' #Example 2 - Same as example 1 but MYC is here specified as Ensembl ID.
-#' ensembl_myc = get_gene_info(these_genes = "ENSG00000136997")
+#' get_gene_info(these_genes = "ENSG00000136997")
 #'
 #' #Example 3 - Request multiple genes with non-default parameters
-#' hugo_genes = get_gene_info(these_genes = c("MYC", "BCL2"),
-#'                            projection = "grch37")
+#' get_gene_info(these_genes = c("MYC", "BCL2"),
+#'               projection = "grch37")
 #'
 #' #Example 4 - Request multiple Ensembl IDs and return all columns.
-#' ensembl_genes = get_gene_info(these_genes = c("ENSG00000136997", "ENSG00000171791"),
-#'                               raw = TRUE)
+#' get_gene_info(these_genes = c("ENSG00000136997", "ENSG00000171791"),
+#'               raw = TRUE)
 #'
 get_gene_info <- function(these_genes = NULL,
                           projection = "hg38",

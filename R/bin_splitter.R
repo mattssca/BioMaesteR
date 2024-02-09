@@ -28,10 +28,15 @@
 #'                        qstart = c(100, 200), 
 #'                        qend = c(200, 300),
 #'                        bin_size = 10)
+#' head(my_bins, 5)
 #'
-#' #Example 2 - Call the funciton with regions from a data frame
-#' my_regions = purify_regions(these_regions = c("chr7:1000-500000", "chr8:50000-7000000"))
-#' these_bins = bin_splitter(these_regions = my_regions, bin_size = 100000)
+#' #Example 2 - Call the function with regions from a data frame
+#' my_regions = purify_regions(these_regions = c("chr7:1000-500000", 
+#'                                               "chr8:50000-7000000"))
+#' 
+#' these_bins = bin_splitter(these_regions = my_regions,
+#'                           bin_size = 100000)
+#' head(these_bins, 5)
 #' 
 bin_splitter = function(these_regions = NULL, 
                         qchrom = NULL,

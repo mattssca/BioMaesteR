@@ -130,10 +130,27 @@ data frame of regions or individual region coordinates.</p>
 <span class="r-in"><span>                       qstart <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">200</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>                       qend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">300</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                       bin_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">my_bins</span>, <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   bin_chr bin_start bin_end</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    chr1       100     110</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    chr1       110     120</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    chr1       120     130</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    chr1       130     140</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    chr1       140     150</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#Example 2 - Call the funciton with regions from a data frame</span></span></span>
-<span class="r-in"><span><span class="va">my_regions</span> <span class="op">=</span> <span class="fu"><a href="purify_regions.html">purify_regions</a></span><span class="op">(</span>these_regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr7:1000-500000"</span>, <span class="st">"chr8:50000-7000000"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">these_bins</span> <span class="op">=</span> <span class="fu">bin_splitter</span><span class="op">(</span>these_regions <span class="op">=</span> <span class="va">my_regions</span>, bin_size <span class="op">=</span> <span class="fl">100000</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">#Example 2 - Call the function with regions from a data frame</span></span></span>
+<span class="r-in"><span><span class="va">my_regions</span> <span class="op">=</span> <span class="fu"><a href="purify_regions.html">purify_regions</a></span><span class="op">(</span>these_regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr7:1000-500000"</span>, </span></span>
+<span class="r-in"><span>                                              <span class="st">"chr8:50000-7000000"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">these_bins</span> <span class="op">=</span> <span class="fu">bin_splitter</span><span class="op">(</span>these_regions <span class="op">=</span> <span class="va">my_regions</span>,</span></span>
+<span class="r-in"><span>                          bin_size <span class="op">=</span> <span class="fl">100000</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">these_bins</span>, <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   bin_chr bin_start bin_end</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    chr7      1000  101000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    chr7    101000  201000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    chr7    201000  301000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    chr7    301000  401000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    chr8     50000  150000</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
