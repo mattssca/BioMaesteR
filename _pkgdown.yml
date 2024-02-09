@@ -52,8 +52,8 @@ navbar:
     - icon: fa-light fa-person-chalkboard
       text: "Tutorials"
       menu:
-      - text: Coming Soon...
-        href: https://github.com/mattssca/BioMaesteR
+      - text: Introduction
+        href: https://github.com/mattssca/BioMaesteR/docs/articles/biomaester-tutorial.html
   right:
     - icon: fa-file-code-o
       text: "Functions Index"
