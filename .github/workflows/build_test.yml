@@ -19,6 +19,10 @@ jobs:
 
       - name: Check out repository
         uses: actions/checkout@v3
+        
+      - name: Get biocmanager packages
+        run: Rscript -e "install.packages('BiocManager')"
+        run: Rscript -e "BiocManager::install(c("GenomicRanges","rtracklayer"))"
 
       - name: Build package
         run: Rscript -e "devtools::install()"
