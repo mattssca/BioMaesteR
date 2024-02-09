@@ -20,18 +20,12 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
         
-      - name: Install Biocmanager
-        run: Rscript -e "install.packages('BiocManager')"
-        
-      - name: Install GenomicRanges and rtracklayer
-        run: Rscript -e "BiocManager::install(c("GenomicRanges","rtracklayer"))"
+      - name: Install BiomaesteR
+        run: Rscript -e "devtools::install(repos = BiocManager::repositories())"
 
-      - name: Build package
-        run: Rscript -e "devtools::install()"
-
-      - name: Check package
+      - name: Check BiomaesteR
         run: Rscript -e "devtools::check(vignettes = FALSE)"
 
-      - name: Run unit tests
+      - name: Run unit tests (BiomaesteR)
         run: Rscript -e "devtools::test()"
     
