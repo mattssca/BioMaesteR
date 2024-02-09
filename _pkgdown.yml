@@ -53,7 +53,7 @@ navbar:
       text: "Tutorials"
       menu:
       - text: Introduction
-        href: https://github.com/mattssca/BioMaesteR/docs/articles/biomaester-tutorial.html
+        href: articles/biomaester-tutorial.html
   right:
     - icon: fa-file-code-o
       text: "Functions Index"
